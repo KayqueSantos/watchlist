@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { ApiService } from '../service/api.service'
+import { Movie } from '../model/movie'
+import { EventEmitterService } from '../event-emitter/event-emitter.service'
+
 
 @Component({
   selector: 'app-navigation',
@@ -8,26 +11,32 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class NavigationComponent implements OnInit {
   model:Search = {
-    query:''
+    movieTitleSearch:''
   };
 
-  constructor(private http: HttpClient) {
+  private movieList: Movie[];
+
+  constructor(private api: ApiService,
+              private eventEmitterService: EventEmitterService) {
    }
 
   ngOnInit() {
   }
 
   sendSearch(): void{
-    alert(this.model.query)
-    let url = "http://localhost:8080/api/search";
-    let body = new HttpParams();
-    body = body.set('query', this.model.query);
-    this.http.post(url, body).subscribe(
-      (data: any) => console.log(data)
-    );
+    const movieTitleSearch: string = this.model.movieTitleSearch;
+      this.api.sendSearch(movieTitleSearch).subscribe(
+        (res: Movie[]) =>  {
+          this.eventEmitterService.onGetSearchMethod(res);
+        },
+        err => {
+          alert("An error has occured.")
+        }
+      );
   }
+
 }
 
 export interface Search{
-  query:string;
+  movieTitleSearch:string;
 }

@@ -2,20 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http"
-import {Router, Routes, RouterModule} from '@angular/router';
+import { AppRoutingModule } from './app-routing.module'
 
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { SearchComponent } from './search/search.component';
-
-const appRoutes :Routes = [
-  {
-    path:'watchlist',
-    component:WatchlistComponent
-  }
-]
+import { WatchlistFavoritesComponent } from './watchlist-favorites/watchlist-favorites.component';
+import { EventEmitterService } from './event-emitter/event-emitter.service';
 
 @NgModule({
   declarations: [
@@ -23,14 +18,17 @@ const appRoutes :Routes = [
     NavigationComponent,
     WatchlistComponent,
     SearchComponent,
+    WatchlistFavoritesComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    EventEmitterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

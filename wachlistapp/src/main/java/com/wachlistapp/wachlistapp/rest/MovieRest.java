@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.wachlistapp.wachlistapp.controller;
+package com.wachlistapp.wachlistapp.rest;
 
 import com.wachlistapp.wachlistapp.model.Movie;
 import com.wachlistapp.wachlistapp.service.MovieService;
@@ -14,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.ArrayList;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author kayques
  */
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
-public class MovieController {
+public class MovieRest {
     
     @Autowired
     private MovieService movieService;
@@ -35,19 +27,19 @@ public class MovieController {
     @Autowired
     private ObjectMapper mapper = new ObjectMapper();
     
-    @GetMapping("/movies")
+    @GetMapping("/movies/all")
     public List<Movie> get(){
-        return movieService.get();
+        return movieService.getAll();
     }
     
     @PostMapping("/search")
-    public List<Movie> search(@RequestParam("query") String query){
-        return movieService.search(query);
+    public List<Movie> search(@RequestParam("movieTitleSearch") String movieTitle){
+        return movieService.search(movieTitle);
     }
     
-    @GetMapping("/watchlist")
+    @GetMapping("/movies/favorites")
     public List<Movie> watchlist(){
-        return movieService.getWatchlist();
+        return movieService.getFavorites();
     }
     
     @RequestMapping("/{movieId}/favorite/toggle")

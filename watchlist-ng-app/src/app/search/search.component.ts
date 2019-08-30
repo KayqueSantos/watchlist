@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from '../model/movie'
+import { EventEmitterService } from '../event-emitter/event-emitter.service'
+import { ApiService } from '../service/api.service'
 
 @Component({
   selector: 'app-search',
@@ -6,10 +9,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  movies: Movie[];
 
-  constructor() { }
+  constructor(private eventEmitterService: EventEmitterService,
+              private api : ApiService) { }
 
   ngOnInit() {
+      this.eventEmitterService.subsVar = this.eventEmitterService.
+      invokeSearchComponentSetSearchFunction.subscribe(
+        (res: Movie[]) => {
+          this.movies = res;
+      },
+      err => {
+        alert("Ocorreu um erro. Por favor tente novamente.")
+      });
+  }
+
+  setFavorite(movie: Movie): void{
+    this.api.setFavorite(movie.id).subscribe(
+      (res: Movie) => {
+        movie.favorite = res.favorite;
+      },
+      err => {
+        alert("Ocorreu um erro. Por favor tente novamente.")
+      }
+    );
   }
 
 }

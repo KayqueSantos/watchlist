@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wachlistapp.wachlistapp.model;
 
+import info.movito.themoviedbapi.model.MovieDb;
+import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,34 +16,34 @@ import javax.persistence.Table;
 public class Movie {
 
     @Id
-    @Column
+    @Column(name="id")
     private String id;
     
-    @Column
-    private String name;
+    @Column(name="title")
+    private String title;
     
-    @Column
+    @Column(name="year")
     private String year;
     
-    @Column 
-    private String poster_url;
+    @Column(name="posterUrl")
+    private String posterUrl;
     
-    @Column
-    private String imdb_rate;
+    @Column(name="imdbRate")
+    private String imdbRate;
         
-    @Column  
+    @Column(name="favorite")
     private boolean favorite;
     
-    @Column
+    @Column(name="description")
     private String description;
 
     
-    public Movie(String id, String name, String year, String poster_url, String imdb_rate, String description) {
+    public Movie(String id, String title, String year, String posterUrl, String imdbRate, String description) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.year = year;
-        this.poster_url = poster_url;
-        this.imdb_rate = imdb_rate;
+        this.posterUrl = posterUrl;
+        this.imdbRate = imdbRate;
         this.description = description;
         this.favorite = false;
     }
@@ -54,10 +51,31 @@ public class Movie {
     public Movie() {
         
     }
+    
+    public Movie movieDbtoMovie(MovieDb apiMovie) {
+        this.id = Integer.toString(apiMovie.getId());
+        this.title = apiMovie.getTitle();
+        this.year = apiMovie.getReleaseDate();
+        if(this.year!=null|!this.year.equals("")){
+            this.year = this.year.substring(0,4);
+        } else {
+            this.year = "Unknow Release Year";
+        }
+        this.posterUrl = apiMovie.getPosterPath();
+        if (this.posterUrl!=null){
+            this.posterUrl = "http://image.tmdb.org/t/p/w185//"+this.posterUrl;
+        } else {
+            this.posterUrl = "";
+        }
+        this.imdbRate = Float.toString(apiMovie.getVoteAverage());
+        this.description = apiMovie.getOverview();
+
+        return this;
+    }
 
     @Override
     public String toString() {
-        return "Movie{" + "id=" + id + ", name=" + name + ", year=" + year + ", poster_url=" + poster_url + ", imdb_rate=" + imdb_rate + ", favorite=" + favorite + ", description=" + description + '}';
+        return "Movie{" + "id=" + id + ", title=" + title + ", year=" + year + ", posterUrl=" + posterUrl + ", imdbRate=" + imdbRate + ", favorite=" + favorite + ", description=" + description + '}';
     }
 
     public String getId() {
@@ -65,19 +83,19 @@ public class Movie {
     }
 
     public String getName() {
-        return name;
+        return title;
     }
 
     public String getYear() {
         return year;
     }
 
-    public String getImdb_rate() {
-        return imdb_rate;
+    public String getimdbRate() {
+        return imdbRate;
     }
 
-    public String getPoster_url() {
-        return poster_url;
+    public String getposterUrl() {
+        return posterUrl;
     }
     
     public boolean isFavorite() {
@@ -96,8 +114,8 @@ public class Movie {
         this.favorite = favorite;
     }
     
-    public void setPoster_url(String poster_url) {
-        this.poster_url = poster_url;
+    public void setposterUrl(String posterUrl) {
+        this.posterUrl = posterUrl;
     }
 
 
@@ -105,8 +123,8 @@ public class Movie {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setYear(String year) {
@@ -114,8 +132,8 @@ public class Movie {
     }
 
 
-    public void setImdb_rate(String imdb_rate) {
-        this.imdb_rate = imdb_rate;
+    public void setimdbRate(String imdbRate) {
+        this.imdbRate = imdbRate;
     }
     
     

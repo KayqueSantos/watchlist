@@ -1,8 +1,11 @@
 <div class="row mb-2 mr-1 justify-content-end">
   <a class="btn btn-secondary" [routerLink]="['/watchlist/favorites']" routerLinkActive="router-link-active"  title="See only your favorite movies.">Favorites</a>
 </div>
-<div class="row mb-3 ml-1 justify-content-start" id="label">
-    Todos os filmes pesquisados:
+<div *ngIf="movies.length==0" class="row mt-4 mb-3 ml-1 justify-content-center" id="label">
+  Você ainda não favoritou nenhum filme.
+</div>
+<div class="row justify-content-start mb-2 ml-1">
+  Veja seus filmes favoritos.
 </div>
 <div *ngFor="let movie of movies" class="container" style="background-color: rgba(0,0,0,1)">
     <div class="row mb-2 justify-content-start">
@@ -22,7 +25,7 @@
                   IMDB: {{movie.imdbRate}}
               </div>
               <div class="row-xl" style="font-weight:500; margin: left">
-                <label style="color: crimson" for="favorite">Favorite</label>
+                <label style="color: crimson; float: left" for="favorite">Favorite</label>
                 <input (click)="setFavorite(movie)" *ngIf="movie.favorite" class="form-check-input ml-1" type="checkbox" id="favorite" checked>
                 <input (click)="setFavorite(movie)" *ngIf="!movie.favorite" class="form-check-input ml-1" type="checkbox" id="favorite">
               </div>

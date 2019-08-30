@@ -3,21 +3,21 @@ import { ApiService } from '../service/api.service';
 import { Movie } from '../model/movie'
 
 @Component({
-  selector: 'app-watchlist',
-  templateUrl: './watchlist.component.html',
-  styleUrls: ['./watchlist.component.css']
+  selector: 'app-watchlist-favorites',
+  templateUrl: './watchlist-favorites.component.html',
+  styleUrls: ['./watchlist-favorites.component.css']
 })
-export class WatchlistComponent implements OnInit {
+export class WatchlistFavoritesComponent implements OnInit {
   movies: Movie[] = [];
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.getWatchlist();
+    this.getWatchlistFavorites();
   }
 
-  getWatchlist(): void{
-    this.api.getWatchlist().subscribe(
+  public getWatchlistFavorites(): void{
+    this.api.getWatchlistFavorites().subscribe(
       (res: Movie[]) => {
         this.movies = res;
       },
@@ -31,6 +31,10 @@ export class WatchlistComponent implements OnInit {
     this.api.setFavorite(movie.id).subscribe(
       (res: Movie) => {
         movie.favorite = res.favorite;
+        if(movie.favorite==false){
+          const index = this.movies.indexOf(movie);
+          this.movies.splice(index, 1);
+        } 
       },
       err => {
         alert("Ocorreu um erro. Por favor tente novamente.")
