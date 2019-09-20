@@ -1,0 +1,34 @@
+.text {
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight:200;
+}
+
+.poster {
+    width: 250px;
+}
+
+.text-bold {
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight:500;
+}
+
+.container {
+    background-color: rgba(0,0,0,1);
+    height: 90%;
+}
+
+#title {
+    font-size: 25px;
+}
+
+#description {
+    font-size: 16px;
+}
+
+#favorite-toggle {
+    color: crimson; 
+    float: left;
+    margin: left;
+}

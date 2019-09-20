@@ -8,7 +8,7 @@ import { moveEmbeddedView } from "@angular/core/src/view";
     providedIn: 'root'
 })
 export class ApiService {
-    private BASE_URL = "http://localhost:8080/api/";
+    private BASE_URL = "https://watchlist-app-restful.herokuapp.com/api/";
     private GET_MOVIES_ALL_URL = this.BASE_URL+"movies/all";
     private GET_MOVIES_FAVORITES_URL = this.BASE_URL+"movies/favorites";
     private SEARCH_URL = this.BASE_URL+"search";
@@ -33,6 +33,10 @@ export class ApiService {
 
     setFavorite(movieId: string): Observable<Object> {
         return this.http.get(this.BASE_URL+movieId+"/favorite/toggle");
+    }
+
+    getById(movieId: string): Observable<Object> {
+        return this.http.get(this.BASE_URL+"/movies/"+movieId)
     }
 
 }

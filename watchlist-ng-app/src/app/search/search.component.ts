@@ -25,15 +25,4 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  setFavorite(movie: Movie): void{
-    this.api.setFavorite(movie.id).subscribe(
-      (res: Movie) => {
-        movie.favorite = res.favorite;
-      },
-      err => {
-        alert("Ocorreu um erro. Por favor tente novamente.")
-      }
-    );
-  }
-
 }

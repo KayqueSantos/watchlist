@@ -1,10 +1,4 @@
 .container {
-    max-height: 100%;
     width: 50%;
-    background-color: white
-}
-
-#row2 {
-    margin-bottom: -9999;
-    padding-bottom: 9999px
+    background-color: white;
 }

@@ -5,36 +5,33 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author kayques
  */
 @Entity
-@Table(name = "movie")
 public class Movie {
 
     @Id
-    @Column(name="id")
     private String id;
     
-    @Column(name="title")
+    @Column
     private String title;
     
-    @Column(name="year")
+    @Column
     private String year;
     
-    @Column(name="posterUrl")
+    @Column
     private String posterUrl;
     
-    @Column(name="imdbRate")
+    @Column
     private String imdbRate;
         
-    @Column(name="favorite")
+    @Column
     private boolean favorite;
     
-    @Column(name="description")
+    @Column(columnDefinition="text")
     private String description;
 
     

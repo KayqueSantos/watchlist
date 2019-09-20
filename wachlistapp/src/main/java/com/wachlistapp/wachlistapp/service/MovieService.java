@@ -24,11 +24,11 @@ public class MovieService  {
     ImdbApi imdbApi;
     
     public List<Movie> getAll() {
-        return movieDAO.get();
+        return movieDAO.getAll();
     }
 
-    public Movie getOne(String id) {
-        return movieDAO.get(id);
+    public Movie getById(String id) {
+        return movieDAO.getById(id);
     }
     
     public ArrayList<Movie> getFavorites(){
@@ -53,7 +53,7 @@ public class MovieService  {
         return movieList;
     }
         ArrayList<Movie> movieList = imdbApi.search(movieTitle);
-        movieList.stream().filter((movie) -> (getOne(movie.getId())==null)).forEachOrdered((movie) -> {
+        movieList.stream().filter((movie) -> (getById(movie.getId())==null)).forEachOrdered((movie) -> {
             save(movie);
         });
         return movieList;
@@ -65,13 +65,11 @@ public class MovieService  {
     }
 
     public Movie favoriteToggle(String id) {
-        Movie movieObj = getOne(id);
-        System.out.println(movieObj);
+        Movie movieObj = getById(id);
         movieObj.setFavorite(!movieObj.isFavorite());
         update(movieObj);
-        System.out.println(movieObj);
         return movieObj;
     }
     
 }
- 
+

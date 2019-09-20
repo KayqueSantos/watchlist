@@ -19,7 +19,7 @@ public class MovieDAO {
     private EntityManager entityManager;
     
     
-    public List<Movie> get() {
+    public List<Movie> getAll() {
         List<Movie> list;
         Session currentSession = entityManager.unwrap(Session.class);
         Query<Movie> query = currentSession.createQuery("from Movie", Movie.class);
@@ -28,7 +28,7 @@ public class MovieDAO {
     }
 
     
-    public Movie get(String id) {
+    public Movie getById(String id) {
         Session currentSession = entityManager.unwrap(Session.class);
         Movie movieObj = currentSession.get(Movie.class, id);
         return movieObj;

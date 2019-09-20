@@ -27,19 +27,4 @@ export class WatchlistFavoritesComponent implements OnInit {
     );
   }
 
-  setFavorite(movie: Movie): void{
-    this.api.setFavorite(movie.id).subscribe(
-      (res: Movie) => {
-        movie.favorite = res.favorite;
-        if(movie.favorite==false){
-          const index = this.movies.indexOf(movie);
-          this.movies.splice(index, 1);
-        } 
-      },
-      err => {
-        alert("Ocorreu um erro. Por favor tente novamente.")
-      }
-    );
-  }
-
 }

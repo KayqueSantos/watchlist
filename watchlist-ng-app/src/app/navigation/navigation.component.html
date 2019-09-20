@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand align-middle" [routerLink]="['/watchlist']" routerLinkActive="router-link-active">WATCHLIST</a>
+  <a class="navbar-brand align-middle" [routerLink]="['/watchlist/all']" routerLinkActive="router-link-active">WATCHLIST</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,7 +9,11 @@
     </ul>
     <form class="form-inline my-2" (submit)="sendSearch()">
           <input style="min-width: 250px" class="form-control mr-sm-2" type="search" placeholder="Pesquise um filme" aria-label="Search" [(ngModel)]="model.movieTitleSearch" [ngModelOptions]="{standalone: true}"/>
-          <button [routerLink]="['/search']" class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
+          <button [routerLink]="['/watchlist/search']" class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
+<hr class="style1">
+<div class="row mb-2 mr-1 justify-content-end">
+  <a class="btn btn-secondary" [routerLink]="['/watchlist/favorites']" routerLinkActive="router-link-active"  title="See only your favorite movies.">Favorites</a>
+</div>

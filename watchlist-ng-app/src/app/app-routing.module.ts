@@ -4,11 +4,17 @@ import {Routes, RouterModule} from '@angular/router';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { SearchComponent } from './search/search.component';
 import { WatchlistFavoritesComponent } from './watchlist-favorites/watchlist-favorites.component';
+import { MoviePageComponent } from './movie-page/movie-page.component';
 
 
 const appRoutes :Routes = [
   {
-    path:'watchlist',
+    path: '',
+    redirectTo:'watchlist/all',
+    pathMatch: 'full'
+  },
+  {
+    path:'watchlist/all',
     component:WatchlistComponent
   },
   {
@@ -16,15 +22,19 @@ const appRoutes :Routes = [
     component:WatchlistFavoritesComponent
   },
   {
-    path: 'search',
+    path: 'watchlist/search',
     component:SearchComponent
+  },
+  {
+    path: 'watchlist/movie/:movieId',
+    component:MoviePageComponent
   }
 ]
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'})
   ],
   exports: [
     RouterModule

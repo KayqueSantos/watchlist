@@ -11,6 +11,8 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
 import { SearchComponent } from './search/search.component';
 import { WatchlistFavoritesComponent } from './watchlist-favorites/watchlist-favorites.component';
 import { EventEmitterService } from './event-emitter/event-emitter.service';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MoviePageComponent } from './movie-page/movie-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { EventEmitterService } from './event-emitter/event-emitter.service';
     WatchlistComponent,
     SearchComponent,
     WatchlistFavoritesComponent,
-  ],
+    MovieCardComponent,
+    MoviePageComponent
+    ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -27,7 +31,7 @@ import { EventEmitterService } from './event-emitter/event-emitter.service';
     AppRoutingModule
   ],
   providers: [
-    EventEmitterService
+    EventEmitterService, 
   ],
   bootstrap: [AppComponent]
 })

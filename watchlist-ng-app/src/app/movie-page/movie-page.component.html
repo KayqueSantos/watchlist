@@ -1,0 +1,23 @@
+<div class="container">
+<br>
+<div class="d-flex row-xl mb-2 justify-content-center">
+  <img class="poster" src="{{movie.posterUrl}}">
+</div>
+
+<div class="d-flex row-xl mb-2 justify-content-center text text-middle">
+  Ano de Lançamento: {{movie.year}}<br>
+  IMDB: {{movie.imdbRate}}<br>
+</div>
+<br>
+
+<div class="row-xl text-bold" id="favorite-toggle">
+  <label id="favorite-toggle" for="favorite">Favorite</label>
+  <input (click)="setFavorite(movie)" [checked]="movie.favorite" class="form-check-input ml-1" type="checkbox" id="favorite">
+</div>
+<br>
+<div class="d-flex row-xl mt-2 mb-2 justify-content-start text text-justify" id="description">
+  {{movie.name}}. {{movie.description}}
+</div>
+<br>
+
+</div>

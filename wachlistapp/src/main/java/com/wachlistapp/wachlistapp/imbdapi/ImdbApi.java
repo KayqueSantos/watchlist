@@ -6,6 +6,7 @@ import info.movito.themoviedbapi.model.MovieDb;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  *
@@ -13,10 +14,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ImdbApi {
+    
+    @Value("${app.imdbApiKey}")
+    private String imdbApiKey;
 
     
     public TmdbApi connect() {
-        TmdbApi apiConnection = new TmdbApi("dd4c6206eceb30ab9704649faf2039f5");
+        TmdbApi apiConnection = new TmdbApi(imdbApiKey);
         return apiConnection;
     }
 

@@ -1,6 +1,6 @@
 {
-  "/api": { 
-    "target": "http://localhost:8080",
+  "/watchlist": { 
+    "target": "https://watchlist-app-restful.herokuapp.com/",
     "secure": false
   }
 }
